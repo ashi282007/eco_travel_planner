@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">🌍 Destination Sustainability Score</h2>
+
+    <form id="destForm" class="form-grid">
+      <input type="text" id="destInput" name="destination" placeholder="Enter Destination" required>
+      <button class="btn btn-primary full-btn" type="submit">Check Score</button>
+    </form>
+
+    <div id="destResult" class="card" style="margin-top:20px; display:none;"></div>
+  </div>
+</section>
+
+<script>
+document.getElementById("destForm").addEventListener("submit", async function(e){
+  e.preventDefault();
+
+  let destination = document.getElementById("destInput").value;
+
+  let response = await fetch("/get_destination_score", {
+    method: "POST",
+    headers: {"Content-Type": "application/x-www-form-urlencoded"},
+    body: "destination=" + encodeURIComponent(destination)
+  });
+
+  let data = await response.json();
+  let box = document.getElementById("destResult");
+
+  if(data.error){
+    box.style.display = "block";
+    box.innerHTML = "<h3 style='color:red;'>❌ " + data.error + "</h3>";
+    return;
+  }
+
+  box.style.display = "block";
+  box.innerHTML = `
+    <h3>Destination: ${data.destination}</h3>
+    <p><b>Waste Score:</b> ${data.waste_management_score}</p>
+    <p><b>Crowd Index:</b> ${data.crowd_index}</p>
+    <p><b>Eco Hotels:</b> ${data.eco_hotels}</p>
+    <p><b>Average AQI:</b> ${data.avg_aqi}</p>
+    <p><b>Green Score:</b> ${data.green_score}</p>
+    <p><b>Water Risk:</b> ${data.water_risk}</p>
+  `;
+});
+</script>
+
+{% endblock %}

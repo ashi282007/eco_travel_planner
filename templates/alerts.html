@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">⚠️ Overtourism & Water Scarcity Alerts</h2>
+
+    <form id="alertForm" class="form-grid">
+      <input type="text" id="alertInput" placeholder="Enter Destination" required>
+      <button class="btn btn-primary full-btn" type="submit">Check Alerts</button>
+    </form>
+
+    <div id="alertResult" class="card" style="margin-top:20px; display:none;"></div>
+  </div>
+</section>
+
+<script>
+document.getElementById("alertForm").addEventListener("submit", async function(e){
+  e.preventDefault();
+
+  let destination = document.getElementById("alertInput").value;
+
+  let response = await fetch("/get_alerts", {
+    method: "POST",
+    headers: {"Content-Type": "application/x-www-form-urlencoded"},
+    body: "destination=" + encodeURIComponent(destination)
+  });
+
+  let data = await response.json();
+  let box = document.getElementById("alertResult");
+
+  box.style.display = "block";
+
+  if(!data.overtourism && !data.water){
+    box.innerHTML = "<h3 style='color:red;'>❌ No alerts found for this destination.</h3>";
+    return;
+  }
+
+  let html = `<h3>Alerts for ${destination}</h3>`;
+
+  if(data.overtourism){
+    html += `
+      <h4>Overtourism</h4>
+      <p><b>Peak Months:</b> ${data.overtourism.peak_months}</p>
+      <p><b>Tourist Footfall:</b> ${data.overtourism.tourist_footfall}</p>
+      <p><b>Crowd Risk:</b> ${data.overtourism.crowd_risk}</p>
+      <p><b>Pollution Risk:</b> ${data.overtourism.pollution_risk}</p>
+    `;
+  }
+
+  if(data.water){
+    html += `
+      <h4>Water Scarcity</h4>
+      <p><b>Water Index:</b> ${data.water.water_index}</p>
+      <p><b>Drought Risk:</b> ${data.water.drought_risk}</p>
+      <p><b>Alert:</b> ${data.water.water_alert_message}</p>
+    `;
+  }
+
+  box.innerHTML = html;
+});
+</script>
+
+{% endblock %}

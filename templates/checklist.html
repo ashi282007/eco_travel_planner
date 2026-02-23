@@ -1,0 +1,117 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<section class="checklist-section">
+  <div class="container">
+
+    <h1>🌿 Eco Travel Readiness Assessment</h1>
+    <p class="subtitle">Evaluate how sustainably you travel and track your progress.</p>
+
+    <!-- Circular Progress -->
+    <div class="eco-score-wrapper">
+      <div class="circle">
+        <span id="circleScore">0%</span>
+      </div>
+      <p id="ecoLevel">Eco Level: Not Calculated</p>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="checklist-grid">
+
+      <!-- Transportation -->
+      <div class="category">
+        <h3>🌍 Transportation (High Impact)</h3>
+        <label><input type="checkbox" class="eco-check" data-weight="3"> Prefer trains over short flights</label>
+        <label><input type="checkbox" class="eco-check" data-weight="3"> Combine multiple trips efficiently</label>
+        <label><input type="checkbox" class="eco-check" data-weight="2"> Use public transport instead of taxis</label>
+        <label><input type="checkbox" class="eco-check" data-weight="2"> Avoid unnecessary connecting flights</label>
+      </div>
+
+      <!-- Packing -->
+      <div class="category">
+        <h3>🎒 Packing & Consumption</h3>
+        <label><input type="checkbox" class="eco-check" data-weight="2"> Pack light intentionally</label>
+        <label><input type="checkbox" class="eco-check" data-weight="1"> Carry reusable bottle</label>
+        <label><input type="checkbox" class="eco-check" data-weight="1"> Use refillable toiletries</label>
+        <label><input type="checkbox" class="eco-check" data-weight="1"> Avoid fast fashion purchases</label>
+      </div>
+
+      <!-- Local Impact -->
+      <div class="category">
+        <h3>🏡 Local Impact</h3>
+        <label><input type="checkbox" class="eco-check" data-weight="2"> Choose local accommodations</label>
+        <label><input type="checkbox" class="eco-check" data-weight="2"> Support local restaurants</label>
+        <label><input type="checkbox" class="eco-check" data-weight="1"> Book ethical tours</label>
+        <label><input type="checkbox" class="eco-check" data-weight="1"> Avoid exploitative wildlife attractions</label>
+      </div>
+
+      <!-- Daily Habits -->
+      <div class="category">
+        <h3>🌱 Daily Habits</h3>
+        <label><input type="checkbox" class="eco-check" data-weight="1"> Reuse hotel towels</label>
+        <label><input type="checkbox" class="eco-check" data-weight="1"> Conserve water & electricity</label>
+        <label><input type="checkbox" class="eco-check" data-weight="1"> Refuse single-use plastics</label>
+        <label><input type="checkbox" class="eco-check" data-weight="1"> Leave places cleaner than found</label>
+      </div>
+
+    </div>
+
+    <div class="button-group">
+      <button onclick="resetChecklist()" class="reset-btn">Reset</button>
+      <button onclick="saveScore()" class="save-btn">Save Score</button>
+      <a href="{{ url_for('download_report') }}" class="download-btn">Download Report</a>
+    </div>
+
+  </div>
+</section>
+
+<script>
+const checkboxes = document.querySelectorAll('.eco-check');
+const progressBar = document.getElementById('progressBar');
+const circleScore = document.getElementById('circleScore');
+const ecoLevel = document.getElementById('ecoLevel');
+
+checkboxes.forEach(cb => cb.addEventListener('change', updateProgress));
+
+function updateProgress() {
+  let totalWeight = 0;
+  let earnedWeight = 0;
+
+  checkboxes.forEach(cb => {
+    const weight = parseInt(cb.dataset.weight);
+    totalWeight += weight;
+    if (cb.checked) earnedWeight += weight;
+  });
+
+  const percent = Math.round((earnedWeight / totalWeight) * 100);
+
+  progressBar.style.width = percent + "%";
+  circleScore.innerText = percent + "%";
+
+  if (percent >= 85) ecoLevel.innerText = "Eco Champion 🌿";
+  else if (percent >= 60) ecoLevel.innerText = "Eco Explorer 🌱";
+  else if (percent >= 35) ecoLevel.innerText = "Eco Beginner 🌍";
+  else ecoLevel.innerText = "Needs Improvement";
+
+  window.currentEcoScore = percent;
+}
+
+function resetChecklist() {
+  checkboxes.forEach(cb => cb.checked = false);
+  updateProgress();
+}
+
+function saveScore() {
+  fetch("/save_score", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({ score: window.currentEcoScore })
+  }).then(() => alert("Score Saved Successfully!"));
+}
+</script>
+
+{% endblock %}

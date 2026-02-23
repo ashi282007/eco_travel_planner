@@ -1,0 +1,152 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="container hero-content">
+    <div class="hero-text">
+    <h1>Travel Smart. Travel Green. 🌿</h1>
+    <p>
+      EcoRoute is a sustainability-based travel assistant that helps you calculate carbon footprint,
+      choose eco-friendly routes, and spread awareness about responsible tourism.
+    </p>
+
+  
+
+  <div class="stats">
+  <div class="stat-item">
+    <h3>500+</h3>
+    <p>Eco Records</p>
+  </div>
+
+  <div class="stat-item">
+    <h3>120+</h3>
+    <p>Routes Available</p>
+  </div>
+
+  <div class="stat-item">
+    <h3>100%</h3>
+    <p>Awareness Focus</p>
+  </div>
+</div>
+
+  <div class="hero-image">
+    <img src="{{ url_for('static', filename='images/hero/hero.jpg') }}" alt="Eco Travel">
+  </div>
+</section>
+
+
+<!-- ABOUT SECTION (NEW PROFESSIONAL SECTION) -->
+<section class="about-section">
+  <div class="about-box">
+    <h2>Why EcoRoute Exists 🌍</h2>
+    <p>
+      Tourism contributes heavily to pollution, plastic waste, and over-crowding.
+      EcoRoute is designed to help travelers make better choices by promoting sustainable transport,
+      eco-friendly habits, and environmental awareness.
+    </p>
+
+    <div class="about-highlights">
+      <div class="highlight">
+        <h3>♻ Less Pollution</h3>
+        <p>Reduce CO₂ emissions by selecting better transport and routes.</p>
+      </div>
+
+      <div class="highlight">
+        <h3>🌱 More Awareness</h3>
+        <p>Learn how travel habits affect climate, wildlife, and local communities.</p>
+      </div>
+
+      <div class="highlight">
+        <h3>🚆 Smarter Choices</h3>
+        <p>Get suggestions for eco travel alternatives like EV, bicycles and public transport.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- QUOTE BANNER SECTION (NEW) -->
+<section class="quote-banner">
+  <div class="quote-content">
+    
+    <!-- ✨ QUOTE LINE: You can change this later anytime -->
+    <h2>"The Earth is not ours to own, it is ours to protect."</h2>
+
+    <p>
+      Every eco-friendly step you take today creates a greener tomorrow.
+    </p>
+  </div>
+</section>
+
+
+
+<!-- FEATURES SECTION -->
+<section class="features">
+  <h2>Core Features 🚀</h2>
+  <p>Explore tools that make your travel sustainable.</p>
+
+  <div class="feature-grid">
+
+    <div class="feature-card">
+      <img src="{{ url_for('static', filename='images/features/eco_route.png') }}" alt="Eco Route">
+      <h3>🚦 Eco Route Finder</h3>
+      <p>Suggests the most eco-friendly route and compares fuel & CO₂ emissions.</p>
+      <a href="{{ url_for('eco_route_page') }}" class="btn-feature">Try Now →</a>
+    </div>
+
+    <div class="feature-card">
+      <img src="{{ url_for('static', filename='images/features/carbon.png') }}" alt="Carbon Calculator">
+      <h3>🧮 Carbon Calculator</h3>
+      <p>Calculate your CO₂ emission and trees needed to offset it.</p>
+      <a href="{{ url_for('carbon_page') }}" class="btn-feature">Try Now →</a>
+    </div>
+
+    <div class="feature-card">
+      <img src="{{ url_for('static', filename='images/features/ev_bike.png') }}" alt="EV Finder">
+      <h3>🚲 EV & Bicycle Finder</h3>
+      <p>Find EV charging stations and bicycle availability in cities.</p>
+      <a href="{{ url_for('transport_finder') }}">Try Now →</a>
+    </div>
+
+    <div class="feature-card">
+      <img src="{{ url_for('static', filename='images/features/score.png') }}" alt="Score">
+      <h3>🌍 Sustainability Score</h3>
+      <p>Check sustainability ratings and eco conditions of destinations.</p>
+      <a href="{{ url_for('destination_page') }}">Try Now →</a>
+    </div>
+
+    <div class="feature-card">
+      <img src="{{ url_for('static', filename='images/features/alerts.png') }}" alt="Alerts">
+      <h3>⚠️ Alerts System</h3>
+      <p>Get warnings for over-tourism, water scarcity and air quality risks.</p>
+      <a href="{{ url_for('alerts_page') }}">Try Now →</a>
+    </div>
+
+    <div class="feature-card">
+      <img src="{{ url_for('static', filename='images/features/checklist.png') }}" alt="Checklist">
+      <h3>✅ Eco Checklist</h3>
+      <p>Generate your travel checklist for sustainable travel preparation.</p>
+      <a href="{{ url_for('checklist') }}">Try Now →</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- AWARENESS SECTION -->
+<section class="awareness-section">
+  <h2>Awareness Matters 🌱</h2>
+  <p>
+    Small steps like using public transport, reducing plastic, and supporting eco-tourism
+    can protect our environment for future generations.
+  </p>
+
+  <div class="awareness-buttons">
+
+    <a href="{{ url_for('quiz') }}" class="btn btn-outline">Take Quiz</a>
+  </div>
+</section>
+
+{% endblock %}

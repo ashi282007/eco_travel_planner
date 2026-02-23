@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>📊 Dynamic Eco Emission Chart</h2>
+
+<form method="POST">
+    <label>Select Vehicle Type:</label>
+
+    <select name="vehicle">
+        <option value="Car" {% if vehicle == "Car" %}selected{% endif %}>Car</option>
+        <option value="Bike" {% if vehicle == "Bike" %}selected{% endif %}>Bike</option>
+        <option value="Bus" {% if vehicle == "Bus" %}selected{% endif %}>Bus</option>
+        <option value="Train" {% if vehicle == "Train" %}selected{% endif %}>Train</option>
+        <option value="Flight" {% if vehicle == "Flight" %}selected{% endif %}>Flight</option>
+    </select>
+
+    <button type="submit">Generate</button>
+</form>
+
+<br><br>
+
+<canvas id="ecoChart" width="400" height="200"></canvas>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const ctx = document.getElementById('ecoChart');
+
+const chartData = JSON.parse('{{ chart_data | tojson | safe }}');
+
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["CO2 per km", "PM2.5", "NOX", "Cost/km"],
+        datasets: [{
+            label: "Eco Stats ({{ vehicle }})",
+            data: chartData,
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: { beginAtZero: true }
+        }
+    }
+});
+</script>
+
+{% endblock %}

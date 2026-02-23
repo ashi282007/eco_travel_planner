@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">💬 Feedback & Suggestions</h2>
+
+    {% if success %}
+      <div class="card">
+        <p style="color:green;">{{ success }}</p>
+      </div>
+    {% endif %}
+
+    <form method="POST" class="form-grid">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your feedback..." rows="5" required></textarea>
+
+      <button class="btn btn-primary full-btn">Submit</button>
+    </form>
+  </div>
+</section>
+
+{% endblock %}

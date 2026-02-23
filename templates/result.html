@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<section class="section">
+  <div class="container">
+
+    {% if error %}
+      <h2 style="color:red;">❌ {{ error }}</h2>
+      <a href="{{ url_for('home') }}" class="btn btn-primary">Go Back</a>
+    {% endif %}
+
+    {% if result %}
+      <h2 class="section-title">🌿 Eco Route Result</h2>
+
+      <div class="card">
+        <p><b>Source:</b> {{ result.source }}</p>
+        <p><b>Destination:</b> {{ result.destination }}</p>
+        <p><b>Popular Distance:</b> {{ result.popular_distance }} km</p>
+        <p><b>Eco Distance:</b> {{ result.eco_distance }} km</p>
+        <p><b>Fuel Saved:</b> {{ result.fuel_saved }} litres</p>
+        <p><b>CO₂ Saved:</b> {{ result.co2_saved }} kg</p>
+        <p><b>Popular Traffic:</b> {{ result.traffic_popular }}</p>
+        <p><b>Eco Traffic:</b> {{ result.traffic_eco }}</p>
+      </div>
+    {% endif %}
+
+    {% if carbon_result %}
+      <h2 class="section-title">🌍 Carbon Result</h2>
+
+      <div class="card">
+        <p><b>Distance:</b> {{ carbon_result.distance }} km</p>
+        <p><b>Vehicle:</b> {{ carbon_result.vehicle_type }}</p>
+        <p><b>Passengers:</b> {{ carbon_result.passengers }}</p>
+        <p><b>Total CO₂:</b> {{ carbon_result.total_co2 }} kg</p>
+        <p><b>Per Person CO₂:</b> {{ carbon_result.per_person }} kg</p>
+        <p><b>Trees Equivalent:</b> {{ carbon_result.trees_eq }} 🌳</p>
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">🧮 Carbon Footprint Calculator</h2>
+
+    <form class="form-grid" action="{{ url_for('carbon') }}" method="POST">
+      <input type="number" name="distance" placeholder="Distance (km)" required>
+
+      <select name="vehicle_type" required>
+        <option value="">Vehicle Type</option>
+        <option value="Car">Car</option>
+        <option value="Bike">Bike</option>
+        <option value="Bus">Bus</option>
+        <option value="Train">Train</option>
+        <option value="Flight">Flight</option>
+      </select>
+
+      <input type="number" name="passengers" placeholder="Passengers" required>
+
+      <button class="btn btn-primary full-btn" type="submit">
+        Calculate CO₂
+      </button>
+    </form>
+  </div>
+</section>
+
+{% endblock %}

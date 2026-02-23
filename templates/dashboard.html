@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Dashboard</h2>
+    <p>Visit the emission chart dashboard here:</p>
+    <a href="{{ url_for('chart') }}" class="btn btn-primary">Open Charts</a>
+    {% if session.get("eco_score") %}
+<div class="eco-dashboard-box">
+  <h3>Your Eco Readiness Score</h3>
+  <p>{{ session.get("eco_score") }}%</p>
+</div>
+{% endif %}
+  </div>
+</section>
+{% endblock %}

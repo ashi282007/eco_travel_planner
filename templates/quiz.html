@@ -1,0 +1,243 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">🌍 Eco Travel Awareness Quiz</h2>
+    <p class="section-subtitle">
+      Test your knowledge on Sustainable & Responsible Travel
+    </p>
+
+    <form id="quizForm">
+
+      <!-- QUESTIONS START -->
+
+      {% for i in range(1,21) %}
+      {% endfor %}
+
+      <!-- Q1 -->
+      <div class="quiz-question">
+        <p>1. Which mode of transport has the lowest carbon emissions per passenger-km?</p>
+        <label><input type="radio" name="q1" value="car"> Petrol Car</label><br>
+        <label><input type="radio" name="q1" value="train"> Electric Train</label><br>
+        <label><input type="radio" name="q1" value="flight"> Domestic Flight</label>
+      </div>
+
+      <!-- Q2 -->
+      <div class="quiz-question">
+        <p>2. What is the main goal of sustainable tourism?</p>
+        <label><input type="radio" name="q2" value="profit"> Maximize tourist profit</label><br>
+        <label><input type="radio" name="q2" value="environment"> Minimize environmental impact</label><br>
+        <label><input type="radio" name="q2" value="luxury"> Promote luxury travel</label>
+      </div>
+
+      <!-- Q3 -->
+      <div class="quiz-question">
+        <p>3. Which fuel is considered cleaner for public transport?</p>
+        <label><input type="radio" name="q3" value="diesel"> Diesel</label><br>
+        <label><input type="radio" name="q3" value="cng"> CNG</label><br>
+        <label><input type="radio" name="q3" value="coal"> Coal</label>
+      </div>
+
+      <!-- Q4 -->
+      <div class="quiz-question">
+        <p>4. Carbon offsetting mainly aims to:</p>
+        <label><input type="radio" name="q4" value="increase"> Increase emissions</label><br>
+        <label><input type="radio" name="q4" value="balance"> Balance carbon emissions</label><br>
+        <label><input type="radio" name="q4" value="ignore"> Ignore pollution</label>
+      </div>
+
+      <!-- Q5 -->
+      <div class="quiz-question">
+        <p>5. Which accommodation practice is eco-friendly?</p>
+        <label><input type="radio" name="q5" value="daily"> Daily towel replacement</label><br>
+        <label><input type="radio" name="q5" value="solar"> Solar-powered hotel</label><br>
+        <label><input type="radio" name="q5" value="plastic"> Single-use plastics</label>
+      </div>
+
+      <!-- Q6 -->
+      <div class="quiz-question">
+        <p>6. What contributes most to aviation emissions?</p>
+        <label><input type="radio" name="q6" value="fuel"> Jet fuel combustion</label><br>
+        <label><input type="radio" name="q6" value="seats"> Passenger seats</label><br>
+        <label><input type="radio" name="q6" value="luggage"> Luggage weight only</label>
+      </div>
+
+      <!-- Q7 -->
+      <div class="quiz-question">
+        <p>7. Which practice reduces over-tourism impact?</p>
+        <label><input type="radio" name="q7" value="peak"> Travel during peak season</label><br>
+        <label><input type="radio" name="q7" value="off"> Travel during off-season</label><br>
+        <label><input type="radio" name="q7" value="crowd"> Visit crowded landmarks only</label>
+      </div>
+
+      <!-- Q8 -->
+      <div class="quiz-question">
+        <p>8. Electric vehicles reduce emissions primarily because:</p>
+        <label><input type="radio" name="q8" value="noengine"> They have no engine</label><br>
+        <label><input type="radio" name="q8" value="noexhaust"> They produce no tailpipe emissions</label><br>
+        <label><input type="radio" name="q8" value="slow"> They move slowly</label>
+      </div>
+
+      <!-- Q9 -->
+      <div class="quiz-question">
+        <p>9. Sustainable travel encourages support of:</p>
+        <label><input type="radio" name="q9" value="local"> Local businesses</label><br>
+        <label><input type="radio" name="q9" value="chains"> International chains only</label><br>
+        <label><input type="radio" name="q9" value="imports"> Imported products</label>
+      </div>
+
+      <!-- Q10 -->
+      <div class="quiz-question">
+        <p>10. Which waste management method is best for travelers?</p>
+        <label><input type="radio" name="q10" value="dump"> Open dumping</label><br>
+        <label><input type="radio" name="q10" value="segregate"> Waste segregation & recycling</label><br>
+        <label><input type="radio" name="q10" value="burn"> Burning plastic</label>
+      </div>
+
+      <!-- Q11 -->
+      <div class="quiz-question">
+        <p>11. Bicycles are sustainable because they:</p>
+        <label><input type="radio" name="q11" value="fuel"> Use fossil fuels</label><br>
+        <label><input type="radio" name="q11" value="zero"> Have zero emissions</label><br>
+        <label><input type="radio" name="q11" value="noise"> Produce noise pollution</label>
+      </div>
+
+      <!-- Q12 -->
+      <div class="quiz-question">
+        <p>12. Eco-tourism primarily focuses on:</p>
+        <label><input type="radio" name="q12" value="nature"> Conservation & local communities</label><br>
+        <label><input type="radio" name="q12" value="shopping"> Shopping malls</label><br>
+        <label><input type="radio" name="q12" value="resort"> Large luxury resorts</label>
+      </div>
+
+      <!-- Q13 -->
+      <div class="quiz-question">
+        <p>13. Reducing luggage weight helps because:</p>
+        <label><input type="radio" name="q13" value="lessfuel"> It reduces fuel consumption</label><br>
+        <label><input type="radio" name="q13" value="style"> It improves style</label><br>
+        <label><input type="radio" name="q13" value="none"> No impact</label>
+      </div>
+
+      <!-- Q14 -->
+      <div class="quiz-question">
+        <p>14. What is a green certification for hotels?</p>
+        <label><input type="radio" name="q14" value="eco"> Eco-label certification</label><br>
+        <label><input type="radio" name="q14" value="five"> Five-star rating</label><br>
+        <label><input type="radio" name="q14" value="wifi"> Free WiFi</label>
+      </div>
+
+      <!-- Q15 -->
+      <div class="quiz-question">
+        <p>15. Walking tours are sustainable because they:</p>
+        <label><input type="radio" name="q15" value="emit"> Emit CO₂</label><br>
+        <label><input type="radio" name="q15" value="zero"> Produce zero emissions</label><br>
+        <label><input type="radio" name="q15" value="crowd"> Increase congestion</label>
+      </div>
+
+      <!-- Q16 -->
+      <div class="quiz-question">
+        <p>16. Which sector contributes significantly to global CO₂ emissions?</p>
+        <label><input type="radio" name="q16" value="aviation"> Aviation</label><br>
+        <label><input type="radio" name="q16" value="books"> Publishing</label><br>
+        <label><input type="radio" name="q16" value="music"> Music industry</label>
+      </div>
+
+      <!-- Q17 -->
+      <div class="quiz-question">
+        <p>17. Sustainable travel reduces:</p>
+        <label><input type="radio" name="q17" value="pollution"> Environmental degradation</label><br>
+        <label><input type="radio" name="q17" value="jobs"> Employment</label><br>
+        <label><input type="radio" name="q17" value="culture"> Cultural awareness</label>
+      </div>
+
+      <!-- Q18 -->
+      <div class="quiz-question">
+        <p>18. Refillable toiletries reduce:</p>
+        <label><input type="radio" name="q18" value="plastic"> Plastic waste</label><br>
+        <label><input type="radio" name="q18" value="water"> Water usage</label><br>
+        <label><input type="radio" name="q18" value="food"> Food waste</label>
+      </div>
+
+      <!-- Q19 -->
+      <div class="quiz-question">
+        <p>19. Sustainable tourism promotes:</p>
+        <label><input type="radio" name="q19" value="culture"> Cultural preservation</label><br>
+        <label><input type="radio" name="q19" value="damage"> Habitat destruction</label><br>
+        <label><input type="radio" name="q19" value="pollute"> Marine pollution</label>
+      </div>
+
+      <!-- Q20 -->
+      <div class="quiz-question">
+        <p>20. The best way to reduce travel footprint is to:</p>
+        <label><input type="radio" name="q20" value="public"> Use public transport</label><br>
+        <label><input type="radio" name="q20" value="private"> Use private jets</label><br>
+        <label><input type="radio" name="q20" value="alone"> Drive alone daily</label>
+      </div>
+
+      <br>
+      <button type="button" class="btn btn-primary" onclick="checkQuiz()">
+        Submit Quiz
+      </button>
+
+    </form>
+
+    <div id="quizResult" style="margin-top:25px; font-weight:bold;"></div>
+
+  </div>
+</section>
+
+<script>
+function checkQuiz() {
+
+  let score = 0;
+
+  const answers = {
+    q1: "train",
+    q2: "environment",
+    q3: "cng",
+    q4: "balance",
+    q5: "solar",
+    q6: "fuel",
+    q7: "off",
+    q8: "noexhaust",
+    q9: "local",
+    q10: "segregate",
+    q11: "zero",
+    q12: "nature",
+    q13: "lessfuel",
+    q14: "eco",
+    q15: "zero",
+    q16: "aviation",
+    q17: "pollution",
+    q18: "plastic",
+    q19: "culture",
+    q20: "public"
+  };
+
+  for (let key in answers) {
+    let selected = document.querySelector(`input[name="${key}"]:checked`);
+    if (selected && selected.value === answers[key]) {
+      score++;
+    }
+  }
+
+  let percentage = (score / 20) * 100;
+  let level = "";
+
+  if (percentage >= 80) {
+    level = "🌱 Eco Expert";
+  } else if (percentage >= 50) {
+    level = "🌍 Aware Traveler";
+  } else {
+    level = "🚶 Beginner – Keep Learning!";
+  }
+
+  document.getElementById("quizResult").innerHTML =
+    `Your Score: ${score}/20 <br>
+     Percentage: ${percentage}% <br>
+     Level: ${level}`;
+}
+</script>
+
+{% endblock %}

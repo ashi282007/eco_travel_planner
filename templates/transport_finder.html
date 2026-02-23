@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">🚲 EV & Bicycle Finder</h2>
+
+    <form id="transportForm" class="form-grid">
+      <input type="text" name="city" id="cityInput" placeholder="Enter City Name" required>
+      <button class="btn btn-primary full-btn" type="submit">Find Transport</button>
+    </form>
+
+    <div id="transportResult" class="card" style="margin-top:20px; display:none;"></div>
+  </div>
+</section>
+
+<script>
+document.getElementById("transportForm").addEventListener("submit", async function(e){
+  e.preventDefault();
+
+  let city = document.getElementById("cityInput").value;
+
+  let response = await fetch("/get_city_transport", {
+    method: "POST",
+    headers: {"Content-Type": "application/x-www-form-urlencoded"},
+    body: "city=" + encodeURIComponent(city)
+  });
+
+  let data = await response.json();
+  let box = document.getElementById("transportResult");
+
+  if(data.error){
+    box.style.display = "block";
+    box.innerHTML = "<h3 style='color:red;'>❌ " + data.error + "</h3>";
+    return;
+  }
+
+  box.style.display = "block";
+  box.innerHTML = `
+    <h3>City: ${data.city}</h3>
+    <p><b>Metro Available:</b> ${data.metro_available}</p>
+    <p><b>EV Stations:</b> ${data.ev_stations}</p>
+    <p><b>Bicycle Rentals:</b> ${data.bicycle_rentals}</p>
+    <p><b>Bus Frequency:</b> ${data.bus_frequency}</p>
+    <p><b>Average AQI:</b> ${data.avg_aqi}</p>
+    <p><b>Green Score:</b> ${data.green_score}</p>
+  `;
+});
+</script>
+
+{% endblock %}
