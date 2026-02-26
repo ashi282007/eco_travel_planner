@@ -1,5 +1,4 @@
 {% extends "layout.html" %}
-
 {% block content %}
 
 <!-- HERO SECTION -->
@@ -32,8 +31,17 @@
 </div>
 
   <div class="hero-image">
-    <img src="{{ url_for('static', filename='images/hero/hero.jpg') }}" alt="Eco Travel">
+  <div class="slider">
+    <div class="slides">
+      <img src="{{ url_for('static', filename='images/slider/slide1.jpg') }}" class="slide">
+      <img src="{{ url_for('static', filename='images/slider/slide2.jpg') }}" class="slide">
+      <img src="{{ url_for('static', filename='images/slider/slide3.jpg') }}" class="slide">
+      <img src="{{ url_for('static', filename='images/slider/slide4.jpg') }}" class="slide">
+      <img src="{{ url_for('static', filename='images/slider/slide5.jpg') }}" class="slide">
+    </div>
   </div>
+</div>
+</div>
 </section>
 
 

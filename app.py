@@ -135,9 +135,9 @@ def dashboard():
 # ---------------------------
 # ECO ROUTE PAGE
 # ---------------------------
-@app.route("/eco_route_page")
+@app.route('/eco_route.html')
 def eco_route_page():
-    return render_template("eco_route.html")
+    return render_template('eco_route.html')
 
 
 @app.route("/eco_route", methods=["GET", "POST"])
@@ -464,7 +464,7 @@ def login():
 # ECO GUIDE PAGE
 #---------------------------
 
-@app.route("/eco-guide")
+@app.route("/eco_guide")
 def eco_guide():
     return render_template("eco_guide.html")
 

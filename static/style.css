@@ -605,3 +605,29 @@ a:visited {
   background: #146c44;
   transform: translateY(-3px);
 }
+/* ===============================
+   HERO IMAGE SLIDER
+================================ */
+
+/* HERO SLIDER - FIXED VERSION */
+
+.slider {
+  position: relative;
+  width: 100%;
+  max-width: 550px;
+  height: 350px;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.slides {
+  display: flex;
+  height: 100%;
+  transition: transform 0.8s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

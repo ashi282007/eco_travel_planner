@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  
+{%extends "layout.html" %}
+{% block content %}
+
 <section class="section">
   <div class="container">
     <h2 class="section-title">🚦 Eco Route Finder</h2>
@@ -14,7 +8,7 @@
       Start typing city name and select from suggestions.
     </p>
 
-    <form class="form-grid" action="eco_route.html" method="GET">
+    <form class="form-grid" action="{{ url_for('eco_route') }}" method="POST">
 
       <!-- SOURCE CITY -->
       <div style="position:relative;">
@@ -118,6 +112,24 @@ async function fetchSuggestions(inputId, suggestionBoxId) {
 // Enable suggestions for both inputs
 fetchSuggestions("source", "sourceSuggestions");
 fetchSuggestions("destination", "destinationSuggestions");
+document.addEventListener("DOMContentLoaded", function () {
+
+    const slidesContainer = document.querySelector(".slides");
+    const slides = document.querySelectorAll(".slide");
+
+    if (!slidesContainer) return;  // Prevent errors on other pages
+
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        slidesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    setInterval(nextSlide, 3000);
+
+});
 </script>
-</body>
-</html>
+
+{% endblock %}
